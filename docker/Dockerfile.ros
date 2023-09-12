@@ -1,0 +1,5 @@
+FROM osrf/ros:noetic
+ARG HOST_USER=root
+USER ${HOST_USER}
+
+CMD bash
