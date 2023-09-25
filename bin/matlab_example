@@ -1,0 +1,23 @@
+#!/bin/bash
+
+xhost +
+# XAUTH=/tmp/.docker.xauth
+# if [ ! -f $XAUTH ]
+# then
+#     xauth_list=$(xauth nlist $DISPLAY | sed -e 's/^..../ffff/')
+#     if [ ! -z "$xauth_list" ]
+#     then
+#         echo $xauth_list | xauth -f $XAUTH nmerge -
+#     else
+#         touch $XAUTH
+#     fi
+#     chmod a+r $XAUTH
+# fi
+
+docker run --rm \
+  --network=host \
+  -v "$HOME/Documents/MATLAB:/home/matlab/Documents/MATLAB" \
+  -v "/tmp/.X11-unix:/tmp/.X11-unix:ro" \
+  -e "DISPLAY=$DISPLAY" \
+  -it \
+  uts-matlab-test

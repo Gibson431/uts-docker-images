@@ -1,7 +1,4 @@
 FROM ros:noetic-ros-base-focal
-ARG HOST_USER=root
-ARG DISPLAY=:0
-ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -y
 RUN apt-get install ros-noetic-gazebo-ros -y
@@ -12,6 +9,8 @@ RUN apt-get install libignition-math4-dev -y
 RUN apt-get install ros-noetic-rviz -y
 
 RUN apt-get install -qqy x11-apps
+ENV DISPLAY :0
+ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get install ros-noetic-turtlebot3 -y
 RUN apt-get install ros-noetic-turtlebot3-gazebo -y
@@ -36,9 +35,6 @@ RUN apt install ros-noetic-rgbd-launch -y
 RUN apt install ros-noetic-moveit-core -y
 RUN apt-get install ros-noetic-teleop-twist-keyboard -y
 
-RUN addgroup --system ${HOST_USER}
-RUN adduser --system ${HOST_USER}
-# USER ${HOST_USER}:${HOST_USER}
 RUN mkdir -p ~/catkin_ws/src
 
 RUN touch ~/.bashrc
